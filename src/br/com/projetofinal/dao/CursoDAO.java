@@ -1,5 +1,8 @@
 package br.com.projetofinal.dao;
 
+import br.com.projetofinal.dao.*;
+import br.com.projetofinal.pojo.*;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -18,7 +21,7 @@ public class CursoDAO implements ICursoDAO {
 			comando = conexao.prepareStatement(sql);
 			comando.setString(1,curso.getNome());
 			comando.setInt(2,curso.getCargaHoraria());	
-			comando.executeUpdate();
+			comando.executeUpdate();//executar tudo que a gente a gente fez.
 			
 		}catch(Exception ex) {
 			ex.printStackTrace();
@@ -26,6 +29,7 @@ public class CursoDAO implements ICursoDAO {
 			System.out.println("mensagem ou funcionalidade padrão!");
 			Conexao.conectar().close();	
 			comando.close();
+			
 		}	
 	
 	}
@@ -36,12 +40,40 @@ public class CursoDAO implements ICursoDAO {
 	}
 
 	@Override
-	public void alterar() {
-		// TODO Auto-generated method stub		
+	public void alterar(Curso curso) {
+		// TODO Auto-generated method stub
+		PreparedStatement comando = null;
+		try {
+			Connection conexao = Conexao.conectar();
+			String sql = "UPDATE curso SET nome=?,cargaHoraria=? WHERE ID=?";//chupa hacker(lad.galinha) otário	
+			comando = conexao.prepareStatement(sql);
+			comando.setString(1,curso.getNome());
+			comando.setInt(2,curso.getCargaHoraria());
+			comando.setInt(3,curso.getId());
+			comando.executeUpdate();
+			
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}finally{
+			System.out.println("mensagem ou funcionalidade padrão!");			
+		}			
 	}
 
 	@Override
-	public void excluir() {
-		// TODO Auto-generated method stub		
+	public void excluir(int id) {
+		// TODO Auto-generated method stub	
+		PreparedStatement comando = null;
+		try {
+			Connection conexao = Conexao.conectar();
+			String sql = "DELETE FROM curso WHERE ID = ?";//chupa hacker(lad.galinha) otário	
+			comando = conexao.prepareStatement(sql);
+			comando.setInt(1,id);
+			comando.execute();
+			
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}finally{
+			System.out.println("mensagem ou funcionalidade padrão!");			
+		}			
 	}
 }
