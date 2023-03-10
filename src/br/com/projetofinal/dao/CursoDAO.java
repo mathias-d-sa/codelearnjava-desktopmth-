@@ -16,18 +16,18 @@ public class CursoDAO implements ICursoDAO {
 		//Criar um statement mais seguro e mais elegante
 		PreparedStatement comando = null;
 		try {
-			Connection conexao = Conexao.conectar();
-			String sql = "INSERT INTO curso(nome,cargaHoraria) VALUES(?,?)";//chupa hacker(lad.galinha) otário	
+			Connection conexao = ConexaoRemota.conectar();
+			String sql = "INSERT INTO curso(nome_curso,carga_horaria) VALUES(?,?)";
 			comando = conexao.prepareStatement(sql);
 			comando.setString(1,curso.getNome());
 			comando.setInt(2,curso.getCargaHoraria());	
-			comando.executeUpdate();//executar tudo que a gente a gente fez.
+			comando.executeUpdate();//executar tudo que a gente fez.
 			
 		}catch(Exception ex) {
 			ex.printStackTrace();
 		}finally{
 			System.out.println("mensagem ou funcionalidade padrão!");
-			Conexao.conectar().close();	
+			ConexaoRemota.conectar().close();	
 			comando.close();
 			
 		}	
@@ -44,8 +44,8 @@ public class CursoDAO implements ICursoDAO {
 		// TODO Auto-generated method stub
 		PreparedStatement comando = null;
 		try {
-			Connection conexao = Conexao.conectar();
-			String sql = "UPDATE curso SET nome=?,cargaHoraria=? WHERE ID=?";//chupa hacker(lad.galinha) otário	
+			Connection conexao = ConexaoRemota.conectar();
+			String sql = "UPDATE curso SET nome_curso=?,carga_horaria=? WHERE idcurso=?";
 			comando = conexao.prepareStatement(sql);
 			comando.setString(1,curso.getNome());
 			comando.setInt(2,curso.getCargaHoraria());
@@ -64,8 +64,8 @@ public class CursoDAO implements ICursoDAO {
 		// TODO Auto-generated method stub	
 		PreparedStatement comando = null;
 		try {
-			Connection conexao = Conexao.conectar();
-			String sql = "DELETE FROM curso WHERE ID = ?";//chupa hacker(lad.galinha) otário	
+			Connection conexao = ConexaoRemota.conectar();
+			String sql = "DELETE FROM curso WHERE idcurso = ?";	
 			comando = conexao.prepareStatement(sql);
 			comando.setInt(1,id);
 			comando.execute();

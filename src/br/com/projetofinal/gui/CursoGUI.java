@@ -15,36 +15,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
+import br.com.projetofinal.dao.ConexaoRemota;
 import br.com.projetofinal.dao.CursoDAO;
 import br.com.projetofinal.pojo.Curso;
 //import java.awt.event.ActionListener;//Resp.Técni: Sistema Operacional
 
-//Porque senão? haja memória RAM, haja SSD
 
-//ActionListener é uma interface
-//Casado
-/*
- * public class Romulo implements Casamento{
- *     //sobrescrita - polimorfismo 
- *     @Override 
- *     public void irPraCasa(){
- *     
- *     } 
- * }
- * 
- * public class Romulo implements Mamae{
- *      @Override
- *      public void naoBeber( ){
- *          if(beber == true)
- *             System.out.println("Eu te Mato!");
- *      }
- * }
- * 
- * ActionListener é uma interface
- * 
- * Interface: é um recurso que possui métodos abstratos que obrigam
- * as classes a implementar métodos (CONTRATO)
- */
 public class CursoGUI extends JFrame implements ActionListener {
 	private JButton btnCadastrar; //variável de referência
 	private JButton btnPesquisar;
